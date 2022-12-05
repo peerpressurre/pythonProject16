@@ -1,22 +1,21 @@
 import csv
 try:
     begin = input('Ви маєте акаунт?(y/n)')
-    datafile = 'data.csv'
     if begin == 'n':
-        def signup():
-            print('Створення акаунту')
-            loginc = input('Придумайте логін - ')
-            passwordc = input('Придумайте пароль - ')
-            path = input('Введіть шлях ->')
-            csv_columns = [loginc, passwordc, path]
+        print('Створення акаунту')
+        loginc = input('Придумайте логін - ')
+        passwordc = input('Придумайте пароль - ')
+        path = input('Введіть шлях ->')
+        csv_columns = [loginc, passwordc, path]
+        datafile = loginc + '.csv'
 
-            try:
-                with open(datafile, 'a') as csvfile:
-                    writer = csv.DictWriter(csvfile, fieldnames=csv_columns)
-                    writer.writeheader()
-            except IOError:
-                print('I/P error')
-        signup()
+        try:
+            with open(datafile, 'a') as csvfile:
+                writer = csv.DictWriter(csvfile, fieldnames=csv_columns)
+                writer.writeheader()
+        except IOError:
+            print('I/P error')
+        print('Реєстрація пройшла успішно')
 
     if begin == 'y':
         print('Вхід в акаунт')
@@ -24,6 +23,9 @@ try:
         while counter < 4:
             loginw = input('Логін - ')
             passwordw = input('Пароль - ')
+            datafile = loginw + '.csv'
+            print(datafile)
+
             if loginw in datafile:
                 if passwordw in datafile:
                     print('Вхід успішний!')
@@ -36,6 +38,7 @@ try:
                 print('Невірний логін. Спробуйте знову')
             counter += 1
         print('Максимальна кількість спроб вичерпана. Спробуйте пізніше.')
+        breakpoint()
 
     product = input('Введіть назву продукту - ')
     category = input('Введіть назву категорії - ')
@@ -58,6 +61,11 @@ try:
             writer.writeheader()
             for data in dict_data:
                 writer.writerow(data)
+
+        with open(csv_file, "r", newline="") as file:
+            reader = csv.reader(file)
+            for row in reader:
+                print(row[0], '-----', row[1], '-----', row[2], '-----', row[3], '-----', row[4], '-----', row[5])
     except IOError:
         print("I/O error")
     if loginw != write[0]:
