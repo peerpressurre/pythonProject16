@@ -85,10 +85,7 @@ try:
         print('Максимальна кількість спроб вичерпана. Спробуйте пізніше.')
         breakpoint()
 
-        except IOError:
-        print("I/O error")
-
-else:
-print('Перевірте ввод символів!')
-except Exception as e:
-print(e)
+    else:
+       print('Перевірте ввод символів!')
+except Exception as ex:
+   print(ex)
