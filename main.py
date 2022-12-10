@@ -11,10 +11,10 @@ try:
             {'login': loginc, 'password': passwordc, 'path': path}
         ]
         csv_columns = ['login', 'password', 'path']
-        datafile = 'logindata.csv'
+        datafile = loginc + '.csv'
 
         try:
-            with open(datafile, 'a') as csvfile:
+            with open(datafile, 'w') as csvfile:
                 writer = csv.DictWriter(csvfile, delimiter=';', fieldnames=csv_columns)
                 writer.writeheader()
                 for data in signup:
@@ -22,6 +22,11 @@ try:
         except IOError:
             print('I/P error')
         print('Реєстрація пройшла успішно')
+
+        # with open(datafile, 'r') as csvfile:
+        #     write = csvfile.readline().replace('\n', '').split(',')
+        #
+        # print(write)
 
         product = input('Введіть назву продукту - ')
         category = input('Введіть назву категорії - ')
@@ -48,7 +53,6 @@ try:
             read = []
             with open(csv_file, "r", newline="") as file:
                 reader = csv.reader(file)
-                # проблема з індексами
                 for row in reader:
                     for index in range(0, len(row)):
                         read.append(row[index])
@@ -69,10 +73,14 @@ try:
             loginw = input('Логін - ')
             passwordw = input('Пароль - ')
             datafile = loginw + '.csv'
-            print(datafile)
+            with open(datafile, 'r') as csvfile:
+                write = csvfile.readline().replace('\n', '').split(',')
 
-            if loginw == datafile[0]:
-                if passwordw == datafile[1]:
+            print(write)
+
+            if loginw == write[0]:
+                #ця хуйня знизу
+                if passwordw == write[1]:
                     print('Вхід успішний!')
 
                     print('Оберіть дію:\nПрочитати дані - r\nДодати інформацію - a\nПереписати файл - w')
