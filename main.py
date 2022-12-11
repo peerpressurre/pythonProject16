@@ -79,7 +79,6 @@ try:
             print(write)
 
             if loginw == write[0]:
-                #ця хуйня знизу
                 if passwordw == write[1]:
                     print('Вхід успішний!')
 
